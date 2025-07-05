@@ -35,8 +35,8 @@ src
 
 ```bash
 ./mvnw spring-boot:run
-Visit: http://localhost:8080/api/hello
 ```
+Visit: http://localhost:8080/api/hello
 
 📝 Author
 Dung Nguyen – [LinkedIn](https://www.linkedin.com/in/dung-nguyen-qt/)
