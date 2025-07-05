@@ -22,14 +22,18 @@ Built with Java, Spring Boot 3, and PostgreSQL.
 
 ## 📦 Project Structure
 
+```
 src
 └── main
-└── java
-└── com.nvd.expensetracker
-├── controller
-├── entity
-├── repository
-└── ExpenseTrackerApiApplication.java
+    └── java
+        └── com
+            └── nvd
+                └── expensetracker
+                    ├── controller
+                    ├── entity
+                    ├── repository
+                    └── ExpenseTrackerApiApplication.java
+```
 
 ## ✅ How to run
 
