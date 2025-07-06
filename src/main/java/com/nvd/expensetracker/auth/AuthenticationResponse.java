@@ -1,13 +1,9 @@
 package com.nvd.expensetracker.auth;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Data
-@Builder
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
 public class AuthenticationResponse {
     private String token;
