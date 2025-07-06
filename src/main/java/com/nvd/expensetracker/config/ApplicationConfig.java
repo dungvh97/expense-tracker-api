@@ -1,6 +1,6 @@
 package com.nvd.expensetracker.config;
 
-import com.nvd.expensetracker.user.UserRepository;
+import com.nvd.expensetracker.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

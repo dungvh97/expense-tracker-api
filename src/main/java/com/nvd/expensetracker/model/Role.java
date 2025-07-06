@@ -1,4 +1,4 @@
-package com.nvd.expensetracker.user;
+package com.nvd.expensetracker.model;
 
 public enum Role {
     USER,

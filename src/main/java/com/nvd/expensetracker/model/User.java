@@ -1,4 +1,4 @@
-package com.nvd.expensetracker.user;
+package com.nvd.expensetracker.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,7 +7,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
-import com.nvd.expensetracker.user.Role;
 
 @Getter
 @Setter

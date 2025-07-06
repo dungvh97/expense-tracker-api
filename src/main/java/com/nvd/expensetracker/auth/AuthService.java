@@ -1,9 +1,9 @@
 package com.nvd.expensetracker.auth;
 
 import com.nvd.expensetracker.config.JwtService;
-import com.nvd.expensetracker.user.Role;
-import com.nvd.expensetracker.user.User;
-import com.nvd.expensetracker.user.UserRepository;
+import com.nvd.expensetracker.model.Role;
+import com.nvd.expensetracker.model.User;
+import com.nvd.expensetracker.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

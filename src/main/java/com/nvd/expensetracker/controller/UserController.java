@@ -1,4 +1,4 @@
-package com.nvd.expensetracker.user;
+package com.nvd.expensetracker.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

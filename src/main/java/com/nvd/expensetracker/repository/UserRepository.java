@@ -1,5 +1,6 @@
-package com.nvd.expensetracker.user;
+package com.nvd.expensetracker.repository;
 
+import com.nvd.expensetracker.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
