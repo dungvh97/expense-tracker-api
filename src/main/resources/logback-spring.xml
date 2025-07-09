@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+    <property name="LOG_DIR" value="logs" />
+    <property name="MAX_HISTORY" value="14" />
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%X{requestId}] %-5level %logger{36} - %msg%n" />
+
+    <!-- Appender: Stacktrace log -->
+    <appender name="STACKTRACE_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/stacktrace.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/stacktrace.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- Appender: Request/Response log -->
+    <appender name="REQUEST_RESPONSE_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/request-response.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/request-response.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- Logger: stacktrace logger -->
+    <logger name="STACKTRACE_LOGGER" level="ERROR" additivity="false">
+        <appender-ref ref="STACKTRACE_FILE" />
+    </logger>
+
+    <!-- Logger: request-response logger -->
+    <logger name="REQUEST_RESPONSE_LOGGER" level="INFO" additivity="false">
+        <appender-ref ref="REQUEST_RESPONSE_FILE" />
+    </logger>
+
+    <!-- Root logger (optional, send only to console for dev) -->
+    <root level="WARN">
+        <appender-ref ref="STACKTRACE_FILE" />
+    </root>
+
+</configuration>

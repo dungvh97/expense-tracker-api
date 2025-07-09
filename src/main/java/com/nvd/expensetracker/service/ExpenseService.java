@@ -1,6 +1,7 @@
 package com.nvd.expensetracker.service;
 
 import com.nvd.expensetracker.dto.ExpenseRequest;
+import com.nvd.expensetracker.dto.MonthlyStats;
 import com.nvd.expensetracker.model.Category;
 import com.nvd.expensetracker.model.Expense;
 import com.nvd.expensetracker.model.User;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.nvd.expensetracker.dto.CategoryExpenseStats;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -81,6 +84,20 @@ public class ExpenseService {
                 .build();
 
         return expenseRepo.save(expense);
+    }
+
+    public List<MonthlyStats> getMonthlyStats(User user) {
+        List<Expense> expenses = expenseRepo.findByUser(user);
+
+        return expenses.stream()
+                .collect(Collectors.groupingBy(
+                        e -> e.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM")),
+                        Collectors.reducing(BigDecimal.ZERO, Expense::getAmount, BigDecimal::add)
+                ))
+                .entrySet().stream()
+                .map(e -> new MonthlyStats(e.getKey(), e.getValue()))
+                .sorted(Comparator.comparing(MonthlyStats::getMonth))
+                .collect(Collectors.toList());
     }
 
 }

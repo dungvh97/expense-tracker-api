@@ -10,6 +10,7 @@ target/
 # Logs
 logs/
 *.log
+/log/
 
 # IDEs
 .idea/

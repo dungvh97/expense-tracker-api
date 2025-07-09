@@ -4,6 +4,7 @@ import com.nvd.expensetracker.dto.BudgetRequest;
 import com.nvd.expensetracker.dto.BudgetResponse;
 import com.nvd.expensetracker.dto.ExpenseResponse;
 import com.nvd.expensetracker.exception.AccessDeniedException;
+import com.nvd.expensetracker.exception.ResourceNotFoundException;
 import com.nvd.expensetracker.model.Budget;
 import com.nvd.expensetracker.model.Category;
 import com.nvd.expensetracker.model.Expense;
@@ -53,7 +54,7 @@ public class BudgetController {
 
         User user = userRepo.findByEmail(userDetails.getUsername()).orElseThrow();
         Category category = categoryRepo.findById(request.getCategoryId())
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
 
         Budget budget = Budget.builder()
                 .amount(request.getAmount())
@@ -81,7 +82,7 @@ public class BudgetController {
             }
 
             Category category = categoryRepo.findById(request.getCategoryId())
-                    .orElseThrow(() -> new RuntimeException("Category not found"));
+                    .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
 
             budget.setAmount(request.getAmount());
             budget.setCategory(category);
