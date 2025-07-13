@@ -2,6 +2,7 @@ package com.nvd.expensetracker.controller;
 
 import com.nvd.expensetracker.dto.CategoryRequest;
 import com.nvd.expensetracker.dto.CategoryResponse;
+import com.nvd.expensetracker.exception.ResourceNotFoundException;
 import com.nvd.expensetracker.model.Category;
 import com.nvd.expensetracker.repository.CategoryRepository;
 import jakarta.validation.Valid;
@@ -43,15 +44,11 @@ public class CategoryController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateCategory(@PathVariable Long id, @Valid @RequestBody CategoryRequest request) {
-        return categoryRepo.findById(id)
-                .map(c -> {
-                    c.setName(request.getName());
-                    CategoryResponse categoryResponse = CategoryResponse.builder()
-                            .id(id)
-                            .name(request.getName())
-                            .build();
-                    return ResponseEntity.ok(categoryResponse);
-                }).orElse(ResponseEntity.notFound().build());
+        Category category = categoryRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+        category.setName(request.getName());
+
+        Category saved = categoryRepo.save(category);
+        return ResponseEntity.ok(modelMapper.map(saved, CategoryResponse.class));
     }
 
     @DeleteMapping("/{id}")

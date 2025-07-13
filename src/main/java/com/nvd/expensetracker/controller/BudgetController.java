@@ -54,7 +54,7 @@ public class BudgetController {
 
         User user = userRepo.findByEmail(userDetails.getUsername()).orElseThrow();
         Category category = categoryRepo.findById(request.getCategoryId())
-                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Budget not found"));
 
         Budget budget = Budget.builder()
                 .amount(request.getAmount())
@@ -82,7 +82,7 @@ public class BudgetController {
             }
 
             Category category = categoryRepo.findById(request.getCategoryId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+                    .orElseThrow(() -> new ResourceNotFoundException("Budget not found"));
 
             budget.setAmount(request.getAmount());
             budget.setCategory(category);

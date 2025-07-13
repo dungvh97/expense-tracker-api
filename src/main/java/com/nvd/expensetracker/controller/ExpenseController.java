@@ -72,7 +72,7 @@ public class ExpenseController {
 
         User user = userRepo.findByEmail(userDetails.getUsername()).orElseThrow();
         Category category = categoryRepo.findById(request.getCategoryId())
-                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Expense not found"));
 
         Expense expense = Expense.builder()
                 .amount(request.getAmount())
@@ -98,7 +98,7 @@ public class ExpenseController {
 
         User user = userRepo.findByEmail(userDetails.getUsername()).orElseThrow();
         Category category = categoryRepo.findById(request.getCategoryId())
-                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Expense not found"));
 
         return expenseRepo.findById(id).map(exp -> {
             if (!exp.getUser().getId().equals(user.getId())) {
